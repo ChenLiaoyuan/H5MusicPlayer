@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>操作本地文件</title>
+		<script>
+			window.onload = function() {
+				var fileInput = document.getElementById('musicFiles');
+				var info = document.getElementById('musicInfo');
+				var music = document.getElementById('music');
+				
+				// 监听change事件:
+				fileInput.addEventListener('change', function() {
+					// 清除背景图片:
+					//preview.style.backgroundImage = '';
+					// 检查文件是否选择:
+					if(!fileInput.value) {
+						info.innerHTML = '没有选择文件';
+						return;
+					}
+					// 获取File引用:
+					console.log(fileInput.files.length);
+					var file = fileInput.files[1];
+					// 获取File信息:
+					info.innerHTML = '文件: ' + file.name + '<br>' +
+						'大小: ' + file.size + '<br>' +
+						'修改: ' + file.lastModifiedDate;
+					if(file.type !== 'audio/mp3') {
+						alert('不是有效的mp3文件!');
+						return;
+					}
+					// 读取文件:
+					var reader = new FileReader();
+					reader.onload = function(e) {
+						var data = e.target.result; // 'data:image/jpeg;base64,/9j/4AAQSk...(base64编码)...'            
+						music.src = data;
+					};
+					// 以DataURL的形式读取文件:
+					reader.readAsDataURL(file);
+				});
+			}
+		</script>
+	</head>
+
+	<body>
+		<input id="musicFiles" type="file" multiple />
+		<div style="border: 1px solid #CCCCCC; width: 300px; height: 150px;">
+			<audio id="music" controls></audio>
+		</div>
+		<br />
+		<div id="musicInfo" style="border: 1px solid #CCCCCC; width: 300px; height: 150px;"></div>
+	</body>
+
+</html>

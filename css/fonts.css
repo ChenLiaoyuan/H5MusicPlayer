@@ -1,0 +1,128 @@
+@font-face {
+	font-family: 'icomoon';
+	src: url('fonts/icomoon.eot?s9pfkq');
+	src: url('fonts/icomoon.eot?s9pfkq#iefix') format('embedded-opentype'), url('fonts/icomoon.ttf?s9pfkq') format('truetype'), url('fonts/icomoon.woff?s9pfkq') format('woff'), url('fonts/icomoon.svg?s9pfkq#icomoon') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+[class^="icon-"],
+[class*=" icon-"] {
+	/* use !important to prevent issues with browser extensions that change fonts */
+	font-family: 'icomoon' !important;
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+	/* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+/*表示在元素选择之前插入content内容*/
+.icon-cross:before {
+	content: "\ea0f";
+}
+
+.icon-cross2:before{
+	content: "\ea0f";
+}
+
+.icon-cross3:before{
+	content: "\ea0f";
+}
+
+.icon-checkmark:before {
+	content: "\ea10";
+}
+
+.icon-play:before {
+	content: "\ea1c";
+}
+
+.icon-pause:before {
+	content: "\ea1d";
+}
+
+.icon-previous:before {
+	content: "\ea1f";
+}
+
+.icon-next:before {
+	content: "\ea20";
+}
+
+#msg ,#searchDiv,#localMusic{
+	width: 266px;
+	position: fixed;
+	z-index: 999;
+	top: 49%;
+	margin-top: -80px;
+	left: 50%;
+	margin-left: -133px;
+	background: #fff;
+	box-shadow: 5px 5px 8px #999;
+	font-size: 17px;
+	color: #666;
+	border: 1px solid #f8f8f8;
+	border-radius: 4px;
+	text-align: center;
+	line-height: 2rem;
+	display: inline-block;
+	padding-bottom: 10px;
+	font-family: "微软雅黑";
+}
+
+#msg_top,.search_top,#music_top {
+	background: #f6f4f0;
+	padding: 5px 15px 5px 20px;
+	text-align: left;
+	
+}
+
+.cross,.music_cross{
+	font-size: 20px;
+	float: right;
+	cursor: pointer;
+}
+
+.icon-cross:hover,.icon-cross2:hover,.icon-cross3:hover{
+	font-size: 23px;
+}
+
+.icon-checkmark:hover{
+	font-size: 33px;
+}
+
+#msg_cont,.search_cont,#music_cont {
+	padding: 15px 20px 20px;
+	text-align: left;
+}
+
+/*#confirm {
+	display: inline-block;
+	color: #fff;
+	padding: 1px 15px;
+	background: #8fc31f;
+	border-radius: 2px;
+	float: right;
+	margin-right: 15px;
+	cursor: pointer;
+}*/
+
+.msg_confirm,.search_confirm,.music_confirm{
+	font-size: 30px;
+	float: right;
+	margin-right: 15px;
+	cursor: pointer;
+	height: 30px;
+}
+
+.nameInput,.songInput,.musicInput{
+	width: 200px;
+	height: 40px;
+	font-size: 16px;
+	border: none;
+}

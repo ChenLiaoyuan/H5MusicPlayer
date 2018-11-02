@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>歌单列表</title>
+		<script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+		<script src="js/songList.js"></script>
+		<style>
+			ol li:hover {
+				color: #0DCECB;
+				text-decoration: underline;
+			}
+			
+			ul li:hover {
+				color: #ff6666;
+				text-decoration: underline;
+			}
+			
+			.tooltip {
+				position: absolute;
+				display: none;
+				z-index: 9900000;
+				outline: none;
+				font-size: 15px;
+				padding: 5px;
+				border-width: 1px;
+				border-style: solid;
+				border-radius: 5px;
+				-moz-border-radius: 5px 5px 5px 5px;
+				-webkit-border-radius: 5px 5px 5px 5px;
+				border-radius: 5px 5px 5px 5px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<ul style="color: white; font-family: '微软雅黑';">
+			<li id="userName" onmouseover="mouseOver(this,event,'点击切换用户名');" 
+				onmouseout="mouseOut();" onclick="switchUser()"
+				style="font-size: 20px;font-weight: bold;">
+				用户名：DefaultSongList
+			</li>
+		</ul>
+		<ol id="songList" style="color: white; font-size: 18px; font-family: '微软雅黑';">
+			<li>您点得太快啦，默认歌单还没加载完成，请返回。</li>
+		</ol>
+	</body>
+
+</html>

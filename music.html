@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>音乐列表</title>
+		<script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+		<script src="js/music.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/loader2.css" />
+		<style>
+			ol li:hover{
+				color: #0DCECB;
+				text-decoration: underline;
+			}
+			
+			ul li:hover {
+				color: #ff6666;
+				text-decoration: underline;
+			}
+			
+			.tooltip {
+				position: absolute;
+				display: none;
+				z-index: 9900000;
+				outline: none;
+				font-size: 15px;
+				padding: 5px;
+				border-width: 1px;
+				border-style: solid;
+				border-radius: 5px;
+				-moz-border-radius: 5px 5px 5px 5px;
+				-webkit-border-radius: 5px 5px 5px 5px;
+				border-radius: 5px 5px 5px 5px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<ul id="ul" style="color: white;">
+			<li id="songListName" style="font-size: 20px;font-weight: bold;"
+				onmouseover="mouseOver(this,event,'点击切换歌单')"
+				onmouseout="mouseOut()"
+				onclick="switchSongList()">
+				歌单：默认歌单
+			</li>
+		</ul>
+		<ol id="musicList" style="color: white; font-size: 18px; font-family: '微软雅黑';">
+			<li>您点得太快啦，默认音乐列表还没加载完成，请返回。</li>
+		</ol>
+		<div class="loader2"></div>
+	</body>
+
+</html>

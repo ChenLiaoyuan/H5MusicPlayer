@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			#msg {
+				width: 266px;
+				position: fixed;
+				z-index: 999;
+				top: 49%;
+				margin-top: -80px;
+				left: 50%;
+				margin-left: -133px;
+				background: #fff;
+				box-shadow: 5px 5px 8px #999;
+				font-size: 17px;
+				color: #666;
+				border: 1px solid #f8f8f8;
+				border-radius: 10px;
+				text-align: center;
+				line-height: 2rem;
+				display: inline-block;
+				padding-bottom: 20px;
+				border-radius: 2px;
+			}
+			
+			#msg_top {
+				background: #f8f8f8;
+				padding: 5px 15px 5px 20px;
+				text-align: left;
+			}
+			
+			#msg_top span {
+				font-size: 22px;
+				float: right;
+				cursor: pointer;
+			}
+			
+			#msg_cont {
+				padding: 15px 20px 20px;
+				text-align: left;
+			}
+			
+			#msg_clear {
+				display: inline-block;
+				color: #fff;
+				padding: 1px 15px;
+				background: #8fc31f;
+				border-radius: 2px;
+				float: right;
+				margin-right: 15px;
+				cursor: pointer;
+			}
+		</style>
+		<script type="text/javascript" src="http://lib.sinaapp.com/js/jquery/1.7.2/jquery.min.js"></script>
+		<script>
+			function alert(e) {      
+				$("body").append('<div id="msg"><div id="msg_top">信息<span class="msg_close">×</span></div><div id="msg_cont">' + e + '</div><div class="msg_close" id="msg_clear">确定</div></div>');      
+				$(".msg_close").click(function() {         
+					$("#msg").remove();      
+				});   
+			}
+		</script>
+
+	</head>
+		<input type="button" name="button" id="button" value="点击" onclick='alert("这是alert弹窗\n支持\\n换行符")' />
+	<body>
+	</body>
+
+</html>

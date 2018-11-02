@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" id="view" content="width=device-width,initial-scale=0.85, minimum-scale=0.85, maximum-scale=1, user-scalable=no" /> 
+	<title>H5音乐播放器</title>
+	<link rel="stylesheet" type="text/css" href="css/index.css">
+	<link rel="stylesheet" type="text/css" href="css/loader.css" />
+	<link rel="stylesheet" type="text/css" href="css/loader2.css" />
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+	<script type="text/javascript" src="js/index.js"></script>
+	<script src="test/playList2.js"></script>
+</head>
+<body style="margin:0 auto;overflow:hidden;">
+	<div class="canvaszz"> </div>
+  	<canvas id="canvas" class="canvas"></canvas> 
+	<div class="player">
+		<!--播放器顶部，用来装载各种菜单button-->
+		<div class="header">
+			<button id="musicBtn" class="button" onclick="showList()">音乐列表</button>
+			<button id="back" class="button" onclick="goBack()" style="display: none;">返回</button>
+			<button id="local" class="localButton" onclick="getLocalFiles()" style="display: none;">本地音乐</button>
+			<button id="switch" class="localButton" onclick="myPrompt('绿水青山jv')">您的歌单</button>
+			<button id="search" class="searchButton" onclick="promptSearch()" style="display: none;">搜索</button>
+			<span id="title" style="display: block;" onmouseover="showShortcut(this,event)" onmouseout="showShortcutOut()">音乐播放器</span>
+		</div>
+		<div>
+			<!--音乐专辑图片-->
+			<div class="albumPic"></div>
+			<!--音乐列表-->
+			<div id="musicList" class="musicList">
+				<iframe style="width: 100%;" src="music.html"></iframe>
+			</div>
+			<!--歌单列表-->
+			<div id="songList" class="musicList">
+				<iframe style="width: 100%;" src="songList.html"></iframe>
+			</div>
+			<!--本地音乐搜索列表-->
+			<div id="searchMusicList" class="musicList">
+				<iframe style="width: 100%;" src="searchMusicList.html"></iframe>
+			</div>
+			<!--网络音乐搜索列表-->
+			<div id="netSearchList" class="musicList">
+				<iframe style="width: 100%;" src="netSearchList.html"></iframe>
+			</div>
+			<!--本地文件夹音乐列表-->
+			<div id="localMusicList" class="musicList">
+				<iframe style="width: 100%;" src="localMusicList.html"></iframe>
+			</div>
+			<!--歌词背景-->
+			<div id="lyricDiv" class="musicList" 
+				style="width:320px;
+				background-image: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.2) ),url(img/clouds.jpeg);
+				background-repeat: no-repeat; border: none;padding: 0px;
+				text-align: center;
+    			font-size: 20px;
+    			color: #cbc7c7;
+    			overflow: hidden;
+    			position: relative;">
+				<ul>
+					<li>歌词</li>
+				</ul>
+			</div>
+		</div>
+		<!--音乐信息，歌名、歌手-->
+		<div class="trackInfo">
+			<div class="name"><p></p></div>
+			<div class="artist"></div>
+			<div class="album"></div>
+		</div>
+		<!--歌词-->
+		<div class="lyric">
+			<p id="lyric" onclick="showFullLyric()" 
+				onmouseover="lyricTip(this,event)" 
+				onmouseout="tipOut()">
+				歌词
+			</p>
+		</div>
+		<!--播放控制按钮，上一首下一首-->
+		<div class="controls">
+			<div class="play">
+				<i class="icon-play"></i>
+			</div>
+			<div class="previous">
+				<i class="icon-previous"></i>
+			</div>
+			<div class="next">
+				<i class="icon-next"></i>
+			</div>
+		</div>
+		<!--显示歌曲时间信息，当前播放时间、歌曲总时长-->
+		<div class="time">
+			<div class="current"></div>
+			<div class="total"></div>
+		</div>
+		<!--使用渐变颜色显示歌曲时间进度条-->
+		<div class="progress"></div>
+		<!--加载动画，正在使用网络加载音乐文件时则显示出来，完成则隐藏-->
+		<div class="loader"></div>
+		<div class="loader2"></div>
+		<!--audio标签装载当前播放的音乐文件-->
+		<audio id="audio" preload="auto"><source src=""></audio>
+	</div>
+	<!--装载用户之前输入的网易云用户名，帮助用户快捷输入-->
+	<datalist id="nameLists"></datalist>
+	<!--装载用户之前搜索输入的歌曲名，帮助用户快捷输入-->
+	<datalist id="songLists"></datalist>
+</body>
+</html>
