@@ -147,7 +147,8 @@
 	_playStatus: false;  //使用下划线前缀表示这是受保护的对象，即protected
 };
 ```
- - 主要的流程为：![加载流程](https://github.com/ChenLiaoyuan/H5MusicPlayer/blob/master/img/%E6%92%AD%E6%94%BE%E6%B5%81%E7%A8%8B.png)
+ - 主要的流程为：
+ - ![加载流程](https://github.com/ChenLiaoyuan/H5MusicPlayer/blob/master/img/%E6%92%AD%E6%94%BE%E6%B5%81%E7%A8%8B.png)
 ### 异步获取歌单列表的代码为：
 
 ```
