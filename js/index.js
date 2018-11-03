@@ -538,7 +538,11 @@ $().ready(function() {
 					$('#audio')[0].pause();
 					//恢复歌词字样
 					if(lyricResult.length <= 0){
-						$("#lyric").text("纯音乐，请欣赏。");
+						if(playStatus.currentTrackIndex == 0){
+							$("#lyric").text("歌词");
+						}else{
+							$("#lyric").text("纯音乐，请欣赏。");
+						}
 					}else{
 						$("#lyric").text("歌词");
 					}
