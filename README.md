@@ -122,12 +122,12 @@
 	{	
 		songListName: "";  //所属的歌单名称 
 		songID:"";  //歌曲ID，网易云音乐每首歌都有固定的ID，通过ID可以获得歌曲的播放链接
-		songName: ""；//歌名
-		artist: ""；//歌手
-		albumPic: ""；//专辑图片url
-		totalTime: ""；//歌曲总时长
-		mp3Url: ""；//该url的格式是http://music.163.com/song/media/outer/url?id=3986241
-        mp3Url2: ""；//该url的格式是"https://m7.music.126.net/20181016104636/965ff036084dc30ec291460d1f4f85e3/ymusic/8827/447f/9ef4/3f399b1fd6d919555b55691e6632366d.mp3"
+		songName: "";//歌名
+		artist: "";//歌手
+		albumPic: "";//专辑图片url
+		totalTime: "";//歌曲总时长
+		mp3Url: "";//该url的格式是http://music.163.com/song/media/outer/url?id=3986241
+        	mp3Url2: "";//该url的格式是"https://m7.music.126.net/20181016104636/965ff036084dc30ec291460d1f4f85e3/ymusic/8827/447f/9ef4/3f399b1fd6d919555b55691e6632366d.mp3"
         上面两个是不同的链接格式，第一个链接我公司的网络设置了禁止访问网易云音乐163网站，所以无法播放，但一般的网络都可以访问。
         第二个链接则是通过网易云api接口获取到的，公司的网络没有禁止，可以访问，当然一般的网络也可以访问。
         两个链接都同时添加到audio下的source下，一个链接失效了，另一个链接可以使用。
