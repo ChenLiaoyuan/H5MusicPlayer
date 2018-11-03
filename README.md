@@ -1,4 +1,3 @@
-***转发我在github发布的一个H5音乐播放器***	
 ## 前言
  - 这是我第一个GitHub项目，之前一直想在GitHub写点东西，近期又在学前端，刚好学到audio标签，平常时也比较喜欢听音乐写代码，因此就萌生了自己写一个音乐播放器的想法。利用了下班和周末的空闲时间，用了两周时间终于写出来了。当用代码一个个地把自己的想法实现出来，那种兴奋和成就感是无与伦比的。甚至周末的时候一码就码到通宵，还不觉得累哈哈。因为我也是初学，用GitHub把自己的注释和思路写出来，可以提供给跟我一样的伙伴来练手。
  - 首先先要感谢两位大神的知识分享：
@@ -8,7 +7,7 @@
 ## 音乐播放器效果
 	
  - 我把音乐播放器放到了腾讯云服务器了，可以直接点击下面链接查看效果，音乐播放器具备的功能基本都实现了。如当前歌单音乐列表、输入网易云用户名获取歌单进行切换、音乐列表歌名搜索、网络音乐搜索、电脑本地音乐添加播放、歌词滚动显示、歌曲播放进度等。
- - [H5MusicPlayer](http://119.29.174.67:8080/H5MusicPlayer/index.html)
+ - [H5MusicPlayer在线播放](http://119.29.174.67:8080/H5MusicPlayer/index.html)
  - 音乐播放器的整个界面效果：
  ![音乐播放器界面效果](https://img-blog.csdnimg.cn/20181103153019528.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0NoZW5saWFveXVhbmp2,size_16,color_FFFFFF,t_70)
  
@@ -358,114 +357,114 @@ function initPlayStatus() {
 *（主要是做了很多网络加载资源出错或mp3链接失效的处理）*
 ```
 //播放、暂停状态处理
-		playStatus: function() {
-			$('.player .controls .play i').attr('class', 'icon-' + (playStatus.playStatus ? 'pause' : 'play'));
+playStatus: function() {
+	$('.player .controls .play i').attr('class', 'icon-' + (playStatus.playStatus ? 'pause' : 'play'));
 
-			if(playStatus.playStatus) {
-				//networkState = 3则说明音乐mp3URl链接失效，找不到资源，需要重新获取歌曲url链接
-				//networkState = 0则说明该音乐的mp3Url为空
-				if($("#audio")[0].networkState != 3 && $("#audio")[0].networkState != 0) {
-					
-					$("#audio")[0].play();
+	if(playStatus.playStatus) {
+		//networkState = 3则说明音乐mp3URl链接失效，找不到资源，需要重新获取歌曲url链接
+		//networkState = 0则说明该音乐的mp3Url为空
+		if($("#audio")[0].networkState != 3 && $("#audio")[0].networkState != 0) {
 
-					//如果5秒后还是没有任何资源(reayState=0)而且网络仍然在加载(networkState=2)
-					//则重新加载刷新歌曲，重新加载次数不超过3次，仍然失败则是网络问题
-					setTimeout(function() {
-						console.log("readyState:" + $("#audio")[0].readyState);
-						console.log("networkState:" + $("#audio")[0].networkState);
-						console.log("error:" + $("#audio")[0].error);
-						if($("#audio")[0].readyState == 0 &&
-							$("#audio")[0].networkState == 2) {
-							//重新刷新的歌曲信息
-							playerControls.trackInfo(currentPlaySong);
-							$("#audio")[0].load();
-							loadTimes++;
-							//playStatus.playStatus = false;
-							//先停顿0.1秒，让程序先加载音乐资源,否则networkState属性会为3，意为找不到资源
-							if(loadTimes <= 4) {
-								setTimeout(function() {
-									playerControls.playStatus();
-								}, 300);
-							} else {
-								loadTimes = 0;
-								playStatus.playStatus = false;
-								alert("加载歌曲失败，请检查网络。");
-							}
-						} else if($("#audio")[0].networkState == 3) {
-							//如果5秒后该音乐的网络状态为3，则说明请求资源失效
-							loadTimes = 0;
-							invalidTimes++; //歌曲失效次数增加，超过3次刷新url链接
-							playerControls.trackInfo(currentPlaySong);
-							$("#audio")[0].load();
-							//调用播放方法去刷新链接
-							playerControls.playStatus();
-						}
-					}, 5000);
+			$("#audio")[0].play();
 
-					//当点击下一首上一首的次数超过8次，对url进行更新
-					//因为指定了ajax使用cached，已经加载url的不用重新连接网易云接口
-					if(playStatus.playTimes >= 8 && currentPlayListIndex != 2) {
-						init20Songs();
-						playStatus.playTimes = 0;
-					}
-
-					//显示第一句歌词
-					if(lyricResult.length <= 0) {
-						$("#lyric").text("纯音乐，请欣赏。");
-					} else {
-						$("#lyric").text(lyricResult[0][1]);
-					}
-
-				} else {
-					//先判断是否已经获取了3次
-					if(currentPlaySong.connectTimes < 3) {
-						//同步获取当前失效歌曲的url链接
-						if(currentPlayListIndex == 1) {
-							//如果是网络搜索结果则更新songSearchResults
-							getMp3Url(songSearchResults, 0, 1, playStatus.currentTrackIndex, false);
-							songSearchResults[currentPlaySong.index].connectTimes++;
-							playStatus.playStatus = false;
-							//重新加载失效的歌曲信息
-							playerControls.trackInfo(songSearchResults[currentPlaySong.index]);
-						} else if(currentPlayListIndex == 0) {
-							//否则更新musicInfos
-							getMp3Url(musicInfos, 0, 1, playStatus.currentTrackIndex, false);
-							musicInfos[playStatus.currentTrackIndex].connectTimes++;
-							playStatus.playStatus = false;
-							//重新加载失效的歌曲信息
-							playerControls.trackInfo(musicInfos[playStatus.currentTrackIndex]);
-						}
-						$("#audio")[0].load();
-						//先停顿0.1秒，让程序先加载音乐资源,否则networkState属性会为3，意为找不到资源
+			//如果5秒后还是没有任何资源(reayState=0)而且网络仍然在加载(networkState=2)
+			//则重新加载刷新歌曲，重新加载次数不超过3次，仍然失败则是网络问题
+			setTimeout(function() {
+				console.log("readyState:" + $("#audio")[0].readyState);
+				console.log("networkState:" + $("#audio")[0].networkState);
+				console.log("error:" + $("#audio")[0].error);
+				if($("#audio")[0].readyState == 0 &&
+					$("#audio")[0].networkState == 2) {
+					//重新刷新的歌曲信息
+					playerControls.trackInfo(currentPlaySong);
+					$("#audio")[0].load();
+					loadTimes++;
+					//playStatus.playStatus = false;
+					//先停顿0.1秒，让程序先加载音乐资源,否则networkState属性会为3，意为找不到资源
+					if(loadTimes <= 4) {
 						setTimeout(function() {
 							playerControls.playStatus();
 						}, 300);
-						alert("歌曲链接失效，请重新点击播放键。");
 					} else {
+						loadTimes = 0;
 						playStatus.playStatus = false;
-						alert("抱歉，该歌曲获取失败，请换下一首歌。");
+						alert("加载歌曲失败，请检查网络。");
 					}
+				} else if($("#audio")[0].networkState == 3) {
+					//如果5秒后该音乐的网络状态为3，则说明请求资源失效
+					loadTimes = 0;
+					invalidTimes++; //歌曲失效次数增加，超过3次刷新url链接
+					playerControls.trackInfo(currentPlaySong);
+					$("#audio")[0].load();
+					//调用播放方法去刷新链接
+					playerControls.playStatus();
+				}
+			}, 5000);
 
-					//失效次数超过3次则说明缓存的url链接几乎都失效了，需要重新获取，刷新缓存
-					invalidTimes++;
-					if(invalidTimes >= 3 && currentPlayListIndex != 2) {
-						init20Songs(false, false);
-						invalidTimes = 0;
-					}
-				}
+			//当点击下一首上一首的次数超过8次，对url进行更新
+			//因为指定了ajax使用cached，已经加载url的不用重新连接网易云接口
+			if(playStatus.playTimes >= 8 && currentPlayListIndex != 2) {
+				init20Songs();
+				playStatus.playTimes = 0;
+			}
+
+			//显示第一句歌词
+			if(lyricResult.length <= 0) {
+				$("#lyric").text("纯音乐，请欣赏。");
 			} else {
-				if($("#audio")[0].played) {
-					$('#audio')[0].pause();
-					//恢复歌词字样
-					if(lyricResult.length <= 0){
-						$("#lyric").text("纯音乐，请欣赏。");
-					}else{
-						$("#lyric").text("歌词");
-					}
-					
+				$("#lyric").text(lyricResult[0][1]);
+			}
+
+		} else {
+			//先判断是否已经获取了3次
+			if(currentPlaySong.connectTimes < 3) {
+				//同步获取当前失效歌曲的url链接
+				if(currentPlayListIndex == 1) {
+					//如果是网络搜索结果则更新songSearchResults
+					getMp3Url(songSearchResults, 0, 1, playStatus.currentTrackIndex, false);
+					songSearchResults[currentPlaySong.index].connectTimes++;
+					playStatus.playStatus = false;
+					//重新加载失效的歌曲信息
+					playerControls.trackInfo(songSearchResults[currentPlaySong.index]);
+				} else if(currentPlayListIndex == 0) {
+					//否则更新musicInfos
+					getMp3Url(musicInfos, 0, 1, playStatus.currentTrackIndex, false);
+					musicInfos[playStatus.currentTrackIndex].connectTimes++;
+					playStatus.playStatus = false;
+					//重新加载失效的歌曲信息
+					playerControls.trackInfo(musicInfos[playStatus.currentTrackIndex]);
 				}
+				$("#audio")[0].load();
+				//先停顿0.1秒，让程序先加载音乐资源,否则networkState属性会为3，意为找不到资源
+				setTimeout(function() {
+					playerControls.playStatus();
+				}, 300);
+				alert("歌曲链接失效，请重新点击播放键。");
+			} else {
+				playStatus.playStatus = false;
+				alert("抱歉，该歌曲获取失败，请换下一首歌。");
+			}
+
+			//失效次数超过3次则说明缓存的url链接几乎都失效了，需要重新获取，刷新缓存
+			invalidTimes++;
+			if(invalidTimes >= 3 && currentPlayListIndex != 2) {
+				init20Songs(false, false);
+				invalidTimes = 0;
 			}
 		}
+	} else {
+		if($("#audio")[0].played) {
+			$('#audio')[0].pause();
+			//恢复歌词字样
+			if(lyricResult.length <= 0){
+				$("#lyric").text("纯音乐，请欣赏。");
+			}else{
+				$("#lyric").text("歌词");
+			}
+
+		}
+	}
+}
 ```
 ### 播放进度条和加载动画的代码为：
 ```
