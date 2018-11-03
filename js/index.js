@@ -89,6 +89,7 @@ var songSearchName = "一百万个可能";
 //根据歌曲ID获取歌词的接口
 var lyricApi = "https://api.imjad.cn/cloudmusic/?type=lyric&id=";
 
+//进度条的颜色
 var progressColors = ["#00ffff", "#ffff00", "#efff66", "#66ff71"];
 
 //获取歌单的所有歌曲信息
@@ -115,6 +116,7 @@ function initSongs(url) {
 	});
 }
 
+//根据网易云接口返回的信息初始化歌曲列表
 function getSongId(data) {
 	var tracks = data.playlist.tracks;
 	//刷新歌曲之前，先把之前的歌曲置空
@@ -400,7 +402,7 @@ $().ready(function() {
 					args.totalTime = totalTime;
 				}
 			} else {
-				//				//网易云接口返回的音频时长单位为毫秒
+				//网易云接口返回的音频时长单位为毫秒
 				//显示这首歌的时长，
 				$('.player .time .total').text(timeConvert(args.totalTime / 1000));
 				//减1是为了避免计算误差，无法自动下一首
