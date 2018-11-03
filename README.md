@@ -9,7 +9,7 @@
  - 我把音乐播放器放到了腾讯云服务器了，可以直接点击下面链接查看效果，音乐播放器具备的功能基本都实现了。如当前歌单音乐列表、输入网易云用户名获取歌单进行切换、音乐列表歌名搜索、网络音乐搜索、电脑本地音乐添加播放、歌词滚动显示、歌曲播放进度等。
  - [H5MusicPlayer在线播放](http://119.29.174.67:8080/H5MusicPlayer/index.html)
  - 音乐播放器的整个界面效果：
- ![音乐播放器界面效果](https://img-blog.csdnimg.cn/20181103153019528.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0NoZW5saWFveXVhbmp2,size_16,color_FFFFFF,t_70)
+ ![音乐播放器界面效果](https://github.com/ChenLiaoyuan/H5MusicPlayer/blob/master/img/H5MusicPlayer.png)
  
  - 从上到下的布局分为“音乐列表”“您的歌单”button按钮、专辑图片、歌名、歌手、歌词、播放控制按钮、歌曲时长、当前时间、播放进度条。
  ## 页面代码布局
@@ -110,7 +110,7 @@
 ```
 
  - 除了主页面显示的元素，还隐藏着下面的元素：
- ![隐藏元素](https://img-blog.csdnimg.cn/20181103160142487.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0NoZW5saWFveXVhbmp2,size_16,color_FFFFFF,t_70)
+ ![隐藏元素](https://github.com/ChenLiaoyuan/H5MusicPlayer/blob/master/img/H5MusicPlayer2.png)
  - 这些元素会在按钮点击的情况触发显示，元素的隐藏和显示主要利用display的block或者none来控制。音乐列表的内容主要用iframe标签内嵌页面来显示。
  ## 播放器实现的逻辑思路
  - 首先音乐播放器有三个重要的对象：
@@ -148,7 +148,7 @@
 };
 ```
  - 主要的流程为：
- ![加载流程](https://img-blog.csdnimg.cn/20181103171229856.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0NoZW5saWFveXVhbmp2,size_16,color_FFFFFF,t_70)
+ ![加载流程](https://github.com/ChenLiaoyuan/H5MusicPlayer/blob/master/img/%E6%92%AD%E6%94%BE%E6%B5%81%E7%A8%8B.png)
 ### 异步获取歌单列表的代码为：
 
 ```
