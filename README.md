@@ -7,7 +7,7 @@
 ## 音乐播放器效果
 	
  - 我把音乐播放器放到了腾讯云服务器了，可以直接点击下面链接查看效果，音乐播放器具备的功能基本都实现了。如当前歌单音乐列表、输入网易云用户名获取歌单进行切换、音乐列表歌名搜索、网络音乐搜索、电脑本地音乐添加播放、歌词滚动显示、歌曲播放进度等。
- - [H5MusicPlayer在线播放](http://119.29.174.67:8080/H5MusicPlayer/index.html)
+ - [H5MusicPlayer在线播放](http://192.144.216.36/H5MusicPlayer/)
  - 音乐播放器的整个界面效果：
  ![音乐播放器界面效果](https://github.com/ChenLiaoyuan/H5MusicPlayer/blob/master/img/H5MusicPlayer.png)
  
